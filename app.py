@@ -72,6 +72,7 @@ with col2:
             use_container_width=True,
         )
 
+
 with col3:
     with st.container(border=True):
         st.subheader("🌊 Physical Parameters")
@@ -79,8 +80,15 @@ with col3:
             "Explore physical characteristics of water, "
             "depending on the measurements in the dataset."
         )
-        st.caption("More features will be available soon.")
-        st.info("🌊 Coming Soon!")
+        st.caption(
+            "View measurements, statistics, charts, and manage records."
+        )
+        st.page_link(
+            "pages/3_Physical_Parameters.py",
+            label="🌊 Open Physical Parameters",
+            help="Open the Physical Parameters dashboard"
+        )
+
 
 # --- Project overview ---
 st.divider()
