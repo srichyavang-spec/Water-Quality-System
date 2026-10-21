@@ -207,7 +207,6 @@ This is a collaborative academic project. Each team member is responsible for th
 | Gorti Sri Chyavan | Biological Parameters | Dataset exploration, visualizations, and CRUD operations |
 | Anisetty Chandra Kanth | Chemical Parameters | Dataset exploration, visualizations, and CRUD operations |
 | Kalagarla Pavan | Physical Parameters | Dataset exploration, visualizations, and CRUD operations |
-| Other team members | Assigned modules | To be completed with the actual names and module assignments |
 
 ## 🔮 Future Improvements
 
