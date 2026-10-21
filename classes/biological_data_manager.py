@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 import tempfile
@@ -37,7 +36,7 @@ class BiologicalDataManager:
 
     def __init__(self, file_path="data/biological_parameters.csv"):
         self.file_path = Path(file_path)
-
+    # Read Operation Implementation
     def load_data(self):
         """Read the CSV and report errors without crashing the app."""
         data = pd.DataFrame()
@@ -104,7 +103,7 @@ class BiologicalDataManager:
                     temp_path.unlink()
                 except OSError:
                     pass
-
+    # Create Operation Implementation
     def add_record(self, record):
         """Add a record after checking its ID and duplicate key."""
         data = self.load_data()
@@ -151,7 +150,7 @@ class BiologicalDataManager:
 
         updated = pd.concat([data, new_record], ignore_index=True)
         self.save_data(updated)
-
+    # Update operation implementation
     def update_record(self, record_id, changes):
         """Update an existing record identified by SlNo."""
         data = self.load_data()
@@ -176,7 +175,7 @@ class BiologicalDataManager:
             data.loc[matches, column] = value
 
         self.save_data(data)
-
+    # Delete operation implementation
     def delete_record(self, record_id):
         """Delete a record only if its ID uniquely identifies it."""
         data = self.load_data()
