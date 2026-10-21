@@ -40,6 +40,13 @@ It covers the following measurements:
 
 The module also provides station and geographic information, acquisition dates, measurement summaries, and record-management tools.
 
+### 🧪 Chemical Parameters Module
+The Chemical Parameters page uses a dataset to explore chemical measurements used to understand water composition and quality.
+
+- Explore chemical measurements.
+- View dataset summaries and visualizations.
+- (More features will be updated as development continues).
+
 **Data quality note:** Missing measurements are treated as missing values rather than zero. If a measurement column contains no recorded values, the application should communicate that limitation instead of presenting a misleading chart.
 
 ### 🗂️ CRUD Operations
@@ -76,7 +83,8 @@ Validation includes record-ID checks, duplicate detection, and measurement valid
 Water-Quality-System/
 ├── app.py
 ├── pages/
-│   └── 3_Biological_Parameters.py
+│   └── 1_Biological_Parameters.py
+│   └── 2_Chemical_Parameters.py
 ├── classes/
 │   ├── __init__.py
 │   └── biological_data_manager.py
@@ -84,6 +92,7 @@ Water-Quality-System/
 │   └── __init__.py
 ├── data/
 │   └── biological_parameters.csv
+│   └── chemical_parameters.csv
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -179,6 +188,7 @@ This is a collaborative academic project. Each team member is responsible for th
 | Team member | Module | Responsibility |
 |---|---|---|
 | Gorti Sri Chyavan | Biological Parameters | Dataset exploration, visualizations, and CRUD operations |
+| Anisetty Chandra Kanth | Chemical Parameters | Dataset exploration, visualizations, and CRUD operations |
 | Other team members | Assigned modules | To be completed with the actual names and module assignments |
 
 ## 🔮 Future Improvements
