@@ -84,7 +84,7 @@ with col3:
             "View measurements, statistics, charts, and manage records."
         )
         st.page_link(
-            "pages/2_Physical_Parameters.py",
+            "pages/3_Physical_Parameters.py",
             label="🌊 Open Physical Parameters",
             help="Open the Physical Parameters dashboard"
         )
