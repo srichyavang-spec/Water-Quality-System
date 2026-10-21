@@ -49,7 +49,7 @@ with col1:
             "Charts, statistics, search, filtering and CRUD."
         )
         st.page_link(
-            "pages/3_Biological_Parameters.py",
+            "pages/1_Biological_Parameters.py",
             label="Explore Biological Data",
             icon="🧬",
             use_container_width=True,
@@ -62,8 +62,15 @@ with col2:
             "Explore chemical measurements used to understand "
             "water composition and quality."
         )
-        st.caption("More features will be available soon.")
-        st.info("🧪 Coming Soon!")
+        st.caption(
+            "Charts, statistics, search, filtering and CRUD."
+        )
+        st.page_link(
+            "pages/2_Chemical_Parameters.py",
+            label="Explore Chemical Data",
+            icon="🧪",
+            use_container_width=True,
+        )
 
 with col3:
     with st.container(border=True):
