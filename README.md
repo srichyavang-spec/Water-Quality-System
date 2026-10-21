@@ -47,6 +47,19 @@ The Chemical Parameters page uses a dataset to explore chemical measurements use
 - View dataset summaries and visualizations.
 - (More features will be updated as development continues).
 
+
+  ## Physical Parameters Module
+
+The Physical Parameters module allows users to explore and manage physical water-quality measurements.
+
+### Parameters
+- Temperature (°C)
+- pH
+- Turbidity (NTU)
+- Conductivity (µS/cm)
+- Total Dissolved Solids (mg/L)
+- Dissolved Oxygen (mg/L)
+
 **Data quality note:** Missing measurements are treated as missing values rather than zero. If a measurement column contains no recorded values, the application should communicate that limitation instead of presenting a misleading chart.
 
 ### 🗂️ CRUD Operations
