@@ -47,8 +47,7 @@ The Chemical Parameters page uses a dataset to explore chemical measurements use
 - View dataset summaries and visualizations.
 - (More features will be updated as development continues).
 
-
-  ## Physical Parameters Module
+### 🌊 Physical Parameters Module
 
 The Physical Parameters module allows users to explore and manage physical water-quality measurements.
 
@@ -98,14 +97,19 @@ Water-Quality-System/
 ├── pages/
 │   └── 1_Biological_Parameters.py
 │   └── 2_Chemical_Parameters.py
+│   └── 3_Physical_Parameters.py
 ├── classes/
 │   ├── __init__.py
 │   └── biological_data_manager.py
+│   └── physical_data_manager.py
 ├── utils/
 │   └── __init__.py
 ├── data/
 │   └── biological_parameters.csv
 │   └── chemical_parameters.csv
+│   ├── physical_parameters.csv
+│   └── physical_parameters_app.csv
+├── prepare_physical_data.py
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -202,6 +206,7 @@ This is a collaborative academic project. Each team member is responsible for th
 |---|---|---|
 | Gorti Sri Chyavan | Biological Parameters | Dataset exploration, visualizations, and CRUD operations |
 | Anisetty Chandra Kanth | Chemical Parameters | Dataset exploration, visualizations, and CRUD operations |
+| Kalagarla Pavan | Physical Parameters | Dataset exploration, visualizations, and CRUD operations |
 | Other team members | Assigned modules | To be completed with the actual names and module assignments |
 
 ## 🔮 Future Improvements
