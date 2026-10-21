@@ -131,3 +131,22 @@ filtered = filtered.sort_values(
 
 st.caption(f"Showing {len(filtered):,} of {len(df):,} records")
 st.dataframe(filtered, use_container_width=True, hide_index=True)
+
+st.divider()
+st.header("Manage Biological Records")
+
+add_tab, update_tab, delete_tab = st.tabs(
+    ["Add Record", "Update Record", "Delete Record"]
+)
+
+with add_tab:
+    st.write("Create a new water-quality record.")
+    st.info("We will connect the add-record form next.")
+
+with update_tab:
+    st.write("Update an existing record.")
+    st.info("We will connect the update form next.")
+
+with delete_tab:
+    st.write("Delete an existing record.")
+    st.info("We will connect the delete form next.")
