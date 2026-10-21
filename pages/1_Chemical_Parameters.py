@@ -39,7 +39,6 @@ def numbers(series):
         errors="coerce"
     )
 
-
 def find_col(df, words):
     for col in df.columns:
         name = "".join(ch for ch in col.lower() if ch.isalnum())
@@ -47,12 +46,14 @@ def find_col(df, words):
             return col
     return None
 
-
 def save_data(df):
-    if df["Record_ID"].duplicated().any():
-        raise ValueError("Record IDs must be unique.")
-    df.to_csv(CSV_FILE, index=False, encoding="utf-8-sig")
+    if "Record_ID" not in df.columns:
+        raise ValueError("Record_ID column is missing.")
 
+    if df["Record_ID"].isna().any() or df["Record_ID"].duplicated().any():
+        raise ValueError("Record IDs must be present and unique.")
+
+    df.to_csv(CSV_FILE, index=False, encoding="utf-8-sig")
 
 def next_id(df):
     used = set(df["Record_ID"].astype(str))
@@ -71,7 +72,18 @@ except Exception as error:
     st.error(f"Could not read CSV: {error}")
     st.stop()
 
+
 state_col = find_col(data, ["state"])
+district_col = find_col(data, ["district"])
+river_col = find_col(data, ["river"])
+station_col = find_col(data, ["station"])
+date_col = find_col(
+    data, ["dataacquisitiontime", "samplingdate", "sampledate", "date"]
+)
+
+if state_col:
+    data[state_col] = data[state_col].astype("string").str.strip()
+
 district_col = find_col(data, ["district"])
 river_col = find_col(data, ["river"])
 station_col = find_col(data, ["station"])
@@ -122,12 +134,29 @@ if search.strip():
 
 sort_col = st.selectbox("Sort records by", list(filtered.columns))
 descending = st.checkbox("Descending order")
-filtered = filtered.sort_values(
-    sort_col, ascending=not descending, na_position="last"
-)
+
+try:
+    filtered = filtered.sort_values(
+        sort_col,
+        ascending=not descending,
+        na_position="last"
+    )
+except (TypeError, ValueError):
+    filtered = filtered.sort_values(
+        sort_col,
+        key=lambda col: col.astype(str),
+        ascending=not descending,
+        na_position="last"
+    )
 
 st.caption(f"Showing {len(filtered)} of {len(data)} records.")
-st.dataframe(filtered, use_container_width=True, hide_index=True)
+
+st.dataframe(
+    filtered.reset_index(drop=True),
+    use_container_width=True,
+    hide_index=True,
+    height=500
+)
 
 st.header("Summary Statistics")
 c1, c2, c3 = st.columns(3)
@@ -177,21 +206,38 @@ with left:
     else:
         st.info("No location column is available.")
 
+
 with right:
     st.subheader("Line Chart")
+
     if date_col:
+        dates = pd.to_datetime(
+            filtered[date_col].astype(str).str.strip(),
+            format="%d-%m-%Y %H:%M",
+            errors="coerce"
+        )
+
+        values = numbers(filtered[parameter])
+
         chart_data = pd.DataFrame({
-            "Date": pd.to_datetime(
-                filtered[date_col], errors="coerce", dayfirst=True
-            ),
-            "Value": numbers(filtered[parameter])
+            "Date": dates,
+            "Value": values
         }).dropna()
 
         if not chart_data.empty:
-            trend = chart_data.groupby("Date")["Value"].mean().sort_index()
+            trend = (
+                chart_data.groupby("Date")["Value"]
+                .mean()
+                .sort_index()
+            )
             st.line_chart(trend)
         else:
-            st.info("No valid date and measurement pairs.")
+            st.warning(
+                "No valid date and measurement pairs. "
+                "Check the selected parameter and active filters."
+            )
+            st.write("Valid dates:", int(dates.notna().sum()))
+            st.write("Valid measurements:", int(values.notna().sum()))
     else:
         st.info("No date column was found.")
 
